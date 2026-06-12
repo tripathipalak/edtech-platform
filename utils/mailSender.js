@@ -24,4 +24,4 @@ const mailSender = async(email, title, body) => {
     }
 }
 
-modile.exports = mailSender;
+module.exports = mailSender;

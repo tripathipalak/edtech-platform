@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const User = require("../models/User");
 
 
 // sendOTP

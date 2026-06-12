@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const tagSchema = new mongoose.Schema({
+const categorySchema = new mongoose.Schema({
     
    name: {
       type: String,
@@ -9,7 +9,7 @@ const tagSchema = new mongoose.Schema({
    description: {
       type: String,
    },
-   course: [
+   courses: [
       {
          type: mongoose.Schema.Types.ObjectId,
          ref: "Course",
@@ -18,4 +18,4 @@ const tagSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("Tags", tagSchema);
+module.exports = mongoose.model("Category", categorySchema);
