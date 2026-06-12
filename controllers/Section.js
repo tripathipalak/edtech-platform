@@ -101,6 +101,8 @@ exports.deleteSection = async (req, res) => {
 
         // use findByIdAndDelete
         await Section.findByIdAndDelete(sectionId);
+       
+        // WE NEED TO DELETE THE ENTRY FROM THE COURSE SCHEMA........ Check at testing time.................
 
         // return response
         return res.status(200).json({
