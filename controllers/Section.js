@@ -97,7 +97,8 @@ exports.deleteSection = async (req, res) => {
     try {
 
         // get ID
-        const { sectionId } = req.params;
+        // const { sectionId } = req.params;
+        const { sectionId } = req.body   // body ke sath chl rha hai ... params ke sath code complete krke check krna hai
 
         // use findByIdAndDelete
         await Section.findByIdAndDelete(sectionId);

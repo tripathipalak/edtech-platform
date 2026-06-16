@@ -1,4 +1,35 @@
 const Category = require("../models/Category");
+const { Mongoose } = require("mongoose");
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max)
+  }
+
+exports.createCategory = async (req, res) => {
+	try {
+		const { name, description } = req.body;
+		if (!name) {
+			return res
+				.status(400)
+				.json({ success: false, message: "All fields are required" });
+		}
+		const CategorysDetails = await Category.create({
+			name: name,
+			description: description,
+		});
+		console.log(CategorysDetails);
+		return res.status(200).json({
+			success: true,
+			message: "Categorys Created Successfully",
+		});
+	} catch (error) {
+		return res.status(500).json({
+			success: true,
+			message: error.message,
+		});
+	}
+};
 
 
 // createCategory handler function
@@ -40,7 +71,7 @@ exports.createCategory = async (req, res) => {
 
 
 // getAllCategory or showAllCategory handler function
-exports.showAllCategory = async (req, res) => {
+exports.showAllCategories = async (req, res) => {
     try {
         const allCategory = await Category.find({}, { name: true, description: true });
 

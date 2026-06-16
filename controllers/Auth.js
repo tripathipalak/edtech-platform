@@ -8,7 +8,7 @@ require("dotenv").config();
 
 
 // sendOTP
-exports.sendOTP = async (req, res) => {
+exports.sendotp = async (req, res) => {
 
     try {
 
@@ -67,7 +67,6 @@ exports.sendOTP = async (req, res) => {
             message: error.message,
         });
     }
-
 };
 
 
@@ -78,8 +77,8 @@ exports.sendOTP = async (req, res) => {
 
 
 
-// signUp
-exports.signUp = async (req, res) => {
+// sign up
+exports.signup = async (req, res) => {
 
     try {
         // 1. Fetch data from request body
@@ -124,8 +123,7 @@ exports.signUp = async (req, res) => {
         const recentOtp = await OTP.find({ email })
             .sort({ createdAt: -1 })
             .limit(1);
-
-        console.log(recentOtp);
+            console.log(recentOtp);
 
         // 6. Validate OTP
         if (recentOtp.length === 0) {
@@ -188,7 +186,7 @@ exports.signUp = async (req, res) => {
 
 
 // login
-exports.login = async(req,res) => {
+exports.login = async (req, res) => {
 
     try {
         // get data from request body
@@ -204,7 +202,7 @@ exports.login = async(req,res) => {
 
         // check if user exits or not
         const user = await User.findOne({ email })
-        .populate("additionalDetails");  // you should usually also populate only if additionalDetails is a reference field in your User schema... Otherwise, you can remove .populate(...)
+            .populate("additionalDetails");  // you should usually also populate only if additionalDetails is a reference field in your User schema... Otherwise, you can remove .populate(...)
 
         if (!user) {
             return res.status(401).json({
@@ -235,19 +233,19 @@ exports.login = async(req,res) => {
             };
 
             return res.cookie("token", token, options).status(200).json({
-                    success: true,
-                    token,
-                    user,
-                    message: "Logged in successfully",
-                });
-        } 
+                success: true,
+                token,
+                user,
+                message: "Logged in successfully",
+            });
+        }
         else {
             return res.status(401).json({
                 success: false,
                 message: "Password is incorrect",
             });
         }
-    }   
+    }
 
     catch (error) {
         console.log(error);
